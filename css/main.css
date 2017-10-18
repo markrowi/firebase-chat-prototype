@@ -1,6 +1,15 @@
+
+body {
+    background-color:  #f5f5f5;
+}
+
+.chat-container{
+    /* border: rgb(235, 235, 235) 5px solid; */
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2), 0 1px 1px 0 rgba(0,0,0,0.14), 0 2px 1px -1px rgba(0,0,0,0.12);
+}
 .chat-box {
-    padding: 20px;
-    background-color: rgb(235, 235, 235);
+    padding: 10px;
+    background-color: #f5f5f5;
 }
 
 .chat-box textarea{
@@ -20,9 +29,10 @@
 .chat-body {
     min-height: 400px;
     background-color: white;
-    border: rgb(235, 235, 235) 5px solid;
+    
     margin-bottom: 20px;
     padding-top: 20px;
+    box-shadow: 0 -1px 0 rgba(0,0,0,0.12) inset;
 }
 .chat{
     padding: 10px;

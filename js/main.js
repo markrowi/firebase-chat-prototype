@@ -22,7 +22,21 @@ $(document).ready(()=>{
         
         populateMessages(messages.val())
     });
+
+
     $sendBtn.on('click', ()=>{
+        writeUserData($senderName.val(), $senderMsg.val());
+    })
+    $senderMsg.on('keydown', function(e){
+        console.log(e)
+        if(e.which === 13 && !e.shiftKey){
+            writeUserData($senderName.val(), $senderMsg.val());
+            e.preventDefault();
+        }
+        
+    })
+
+    function writeUserData(name, message) {
         if($senderName.val()===""){
             alert('Enter your name')
             $senderName.focus()
@@ -30,18 +44,13 @@ $(document).ready(()=>{
             alert('Enter your message')
             $senderMsg.focus()
         }else{
-            writeUserData($senderName.val(), $senderMsg.val());
+            firebase.database().ref('messages/' + msgCount).set({
+            name: name,
+            date: getDate(),
+            message : message
+            });
+            $senderMsg.val("");
         }
-        
-    })
-    function writeUserData(name, message) {
-      
-        firebase.database().ref('messages/' + msgCount).set({
-          name: name,
-          date: getDate(),
-          message : message
-        });
-        $senderMsg.val("");
  
       }
     
