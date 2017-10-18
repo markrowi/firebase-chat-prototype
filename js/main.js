@@ -24,9 +24,11 @@ $(document).ready(()=>{
     });
     $sendBtn.on('click', ()=>{
         if($senderName.val()===""){
-            alert('enter Name')
+            alert('Enter your name')
+            $senderName.focus()
         }else  if($senderMsg.val()===""){
-            alert('enter Message')
+            alert('Enter your message')
+            $senderMsg.focus()
         }else{
             writeUserData($senderName.val(), $senderMsg.val());
         }
