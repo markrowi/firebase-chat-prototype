@@ -4,6 +4,7 @@ $(document).ready(()=>{
     var $sendBtn = $('#send');
     var $senderMsg = $('#sender-message');
     var $senderName = $('#sender-name');
+    var $clearCon = $('#clearCon');
     var msgCount = 0;
     var config = {
         apiKey: "AIzaSyBRpkRVgdZw84WVwPiMITU62mO1EsoRlHg",
@@ -36,6 +37,14 @@ $(document).ready(()=>{
         
     })
 
+
+    $clearCon.on('click', function(){
+        if(confirm("Are you sure you want to clear all conversation?")){
+            clearConversation();
+        }
+        
+    })
+
     function writeUserData(name, message) {
         if($senderName.val()===""){
             alert('Enter your name')
@@ -53,17 +62,28 @@ $(document).ready(()=>{
         }
  
       }
+
+    function clearConversation(){
+        firebase.database().ref('messages/').set([]);
+        populateMessages([])
+    }
     
     function populateMessages(messages){
-        console.log(messages.length)
         msgCount = messages.length
-        // msgCount = messages.lenght;
         $msgCont.empty();
         $.each(messages, (index, chat)=>{
             chat['id'] = index;
             $msgCont.append(templateChat(chat))
         })
+
+        if($senderName.val()===""){
+            $senderName.focus();
+        }else{
+            $senderMsg.focus();
+        }
     }
+
+
     
     function getDate() {
         var today = new Date();
